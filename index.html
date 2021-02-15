@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@9.2.0/lib/browser/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="js/hill.js"></script>
+    <script src="js/playfair.js"></script>
+
+    <!-- Meta tags -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <!-- Favicon and title -->
+    <link rel="icon" href="img/favicon.png">
+    <title>Affine Cipher Breaker</title>
+
+    <!-- Halfmoon CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet"/>
+  </head>
+  <body class="container-fluid with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+    <!-- Modals -->
+    <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
+
+    <!-- Page wrapper start -->
+    <div class="page-wrapper">
+
+      <!-- Sticky alerts (toasts) -->
+      <div class="sticky-alerts"></div>
+
+      <!-- Content wrapper start -->
+      <div class="content-wrapper">
+
+        <!-- Navbar start -->
+        <nav class="navbar">
+          <div class="navbar-content">
+            <h3>MAT 385 Project</h3>
+          </div>
+        </nav>
+        <!-- Navbar end -->
+
+        <!-- Cipher component start -->
+        <div class="card w-full ml-0">
+          <div class="row">
+            
+            <!-- Input and output textarea's -->
+            <div class="col-8">
+              <textarea placeholder="Input" class="form-control" id="input"></textarea>
+              <p id="input_count" class="mt-0">Word Count: 0</p>
+              <textarea placeholder="Output" class="form-control mt-10" id="output" readonly="readonly"></textarea>
+              <p id="output_count" class="mt-0">Word Count: 0</p>
+            </div>
+
+            <!-- Blank region -->
+            <div class="col-2"></div>
+
+            <!-- Keys and buttons -->
+            <div class="col-2" height="100%">
+              <div class="text-right">
+                <select class="form-control" id="cipher">
+                  <option value="playfair" selected="selected">Playfair</option>
+                  <option value="hill" selected="selected">Hill</option>
+                </select>
+                
+                <p></p>
+                <hr>
+
+                <input type="text" placeholder="Keyword" class="form-control" id="keyword">
+                <!-- Matrix input, make it a modal (and scalable maybe?) -->
+
+                <hr>
+                <p></p>
+
+                <div class="text-center">
+                  <button class="btn" id="encipher">Encipher</button>
+                  <button class="btn" id="decipher">Decipher</button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Cipher component end -->
+
+      </div>
+      <!-- Content wrapper end -->
+
+    </div>
+    <!-- Page wrapper end -->
+            
+  </body>
+  <script src="js/listeners.js"></script>
+</html>
