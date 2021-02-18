@@ -4,24 +4,36 @@ $('#encipher').click(function() {
     var input = $('#input').val();
     var output;
     
-    // Switches the output to pick the right encipher function.
-    switch($('#cipher').val())
+    try
     {
-    case 'playfair':
-        var keyword = $('#keyword').val();
-        output = playfairEncipher(input, keyword);
-        break;
-    case 'hill':
-        output = hillEncipher();
-        break;
-    default:
+        // Switches the output to pick the right encipher function.
+        switch($('#cipher').val())
+        {
+        case 'playfair':
+            var keyword = $('#keyword').val();
+            output = playfairEncipher(input, keyword);
+            break;
+        case 'hill':
+            output = hillEncipher(input, [[1, 1], [1, 1]]);
+            break;
+        default:
+            halfmoon.initStickyAlert({
+                content: "Invalid cipher type.",
+                title: "Error",
+                alertType: "alert-danger",
+                timeShown: 3000
+            });
+            break;
+        }
+    }
+    catch (e)
+    {
         halfmoon.initStickyAlert({
-            content: "Invalid cipher type.",
+            content: e,
             title: "Error",
             alertType: "alert-danger",
             timeShown: 3000
         });
-        break;
     }
 
     // Setup output field and its word count.
@@ -36,18 +48,30 @@ $('#decipher').click(function() {
     var output;
 
     // Switches the output to pick the right decipher function.
-    switch($('#cipher').val())
+    try
     {
-    case 'playfair':
-        var keyword = $('#keyword').val();
-        output = playfairDecipher(input, keyword);
-        break;
-    case 'hill':
-        output = hillDecipher();
-        break;
-    default:
+        switch($('#cipher').val())
+        {
+        case 'playfair':
+            var keyword = $('#keyword').val();
+            output = playfairDecipher(input, keyword);
+            break;
+        case 'hill':
+            output = hillDecipher(input, [[1, 1], [1, 1]]);
+            break;
+        default:
+            halfmoon.initStickyAlert({
+                content: "Invalid cipher type.",
+                title: "Error",
+                alertType: "alert-danger",
+                timeShown: 3000
+            });
+        }
+    }
+    catch (e)
+    {
         halfmoon.initStickyAlert({
-            content: "Invalid cipher type.",
+            content: e,
             title: "Error",
             alertType: "alert-danger",
             timeShown: 3000
@@ -66,7 +90,7 @@ $('#input').keyup(function() {
 
 // Resets some elements when the page is fully loaded.
 $(document).ready(function() {
-    $('#input').val("");
+    //$('#input').val("");
     $('#cipher').val("playfair");
-    $('#keyword').val("");
+    //$('#keyword').val("");
 });
