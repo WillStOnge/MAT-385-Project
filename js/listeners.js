@@ -14,7 +14,25 @@ $('#encipher').click(function() {
             output = playfairEncipher(input, keyword);
             break;
         case 'hill':
-            output = hillEncipher(input, [[1, 1], [1, 1]]);
+            var m1, m2, m3, m4;
+        
+            try
+            {
+                m1 = Number($('#m1').val());
+                m2 = Number($('#m2').val());
+                m3 = Number($('#m3').val());
+                m4 = Number($('#m4').val());
+            }
+            catch (e)
+            {
+                halfmoon.initStickyAlert({
+                    content: "Invalid inputs",
+                    title: "Error",
+                    alertType: "alert-danger",
+                    timeShown: 3000
+                });
+            }
+            output = hillDecipher(input, [[m1, m2], [m3, m4]]);
             break;
         default:
             halfmoon.initStickyAlert({
@@ -36,9 +54,7 @@ $('#encipher').click(function() {
         });
     }
 
-    // Setup output field and its word count.
-    $('#output').text(output);
-    $('#output_count').text("Word Count: " + $('#output').val().length);
+    $('#output').val(output);
 });
 
 // Deciphers the text in input and places it in output.
@@ -57,7 +73,11 @@ $('#decipher').click(function() {
             output = playfairDecipher(input, keyword);
             break;
         case 'hill':
-            output = hillDecipher(input, [[1, 1], [1, 1]]);
+            var m1 = Number($('#m1').val());
+            var m2 = Number($('#m2').val());
+            var m3 = Number($('#m3').val());
+            var m4 = Number($('#m4').val());
+            output = hillDecipher(input, [[m1, m2], [m3, m4]]);
             break;
         default:
             halfmoon.initStickyAlert({
@@ -78,19 +98,40 @@ $('#decipher').click(function() {
         });
     }
 
-    // Setup output field and its word count.
-    $('#output').text(output);
-    $('#output_count').text("Word Count: " + $('#output').val().length);
+    $('#output').val(output);
 });
 
-// Calculates word count when input is updated.
-$('#input').keyup(function() {
-    $('#input_count').text("Word Count: " + $('#input').val().length);
+// Clears the input and output fields.
+$('#clear').click(function() {
+    $('#input').val("");
+    $('#output').val("");
 });
 
-// Resets some elements when the page is fully loaded.
-$(document).ready(function() {
-    //$('#input').val("");
-    $('#cipher').val("playfair");
-    //$('#keyword').val("");
+$('document').ready(function() {
+    $('#year').text(new Date().getFullYear());
+    $('#cipher').val('playfair');
 });
+
+$('#cipher').change(function() {
+    // Hide all elements.
+    $('#playfairInput').css("visibility", "hidden");
+    $('#hillInput').css("visibility", "hidden");
+
+    // Set height to 0.
+    $('#playfairInput').css("height", "0");
+    $('#hillInput').css("height", "0");
+
+    // Find elements to display.
+    switch($('#cipher').val())
+    {
+    case 'playfair':
+        $('#playfairInput').css("visibility", "visible");
+        $('#playfairInput').css("height", "100%");
+        break;
+    case 'hill':
+        $('#hillInput').css("visibility", "visible");
+        $('#hillInput').css("height", "100%");
+        break;
+    default:
+    }
+})

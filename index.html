@@ -17,7 +17,7 @@
 
     <!-- Favicon and title -->
     <link rel="icon" href="img/favicon.png">
-    <title>Affine Cipher Breaker</title>
+    <title>Hill and Playfair Cipher</title>
 
     <!-- Halfmoon CSS -->
     <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet"/>
@@ -50,9 +50,8 @@
             <!-- Input and output textarea's -->
             <div class="col-8">
               <textarea placeholder="Input" class="form-control" id="input"></textarea>
-              <p id="input_count" class="mt-0">Word Count: 0</p>
+              <button class="btn mt-5" id="clear">Clear</button>
               <textarea placeholder="Output" class="form-control mt-10" id="output" readonly="readonly"></textarea>
-              <p id="output_count" class="mt-0">Word Count: 0</p>
             </div>
 
             <!-- Blank region -->
@@ -69,8 +68,15 @@
                 <p></p>
                 <hr>
 
-                <input type="text" placeholder="Keyword" class="form-control" id="keyword">
-                <!-- Matrix input, make it a modal (and scalable maybe?) -->
+                <div id="playfairInput">
+                  <input type="text" placeholder="Keyword" class="form-control" id="keyword">
+                </div>
+                <div id="hillInput" style="visibility: hidden; height: 0">
+                  <input type="number" min="0" max="25" class="form-control" id="m1">
+                  <input type="number" min="0" max="25" class="form-control" id="m2">
+                  <input type="number" min="0" max="25" class="form-control" id="m3">
+                  <input type="number" min="0" max="25" class="form-control" id="m4">
+                </div>
 
                 <hr>
                 <p></p>
@@ -86,6 +92,12 @@
           </div>
         </div>
         <!-- Cipher component end -->
+
+        <!-- Footer start -->
+        <footer class="text-center">
+          <p class="font-size-12 m-0">This site was designed for MAT 385 (Discrete Mathematics) at Northern Kentucky University.<br>&copy;<span id="year"></span> Will St. Onge and Greyson Fangman</p>
+        </footer>
+        <!-- Footer end -->
 
       </div>
       <!-- Content wrapper end -->
