@@ -7,7 +7,7 @@ function playfairEncipher(plaintext, keyword)
     validateType(keyword, "string", "keyword");
 
     var keySquare = generateKeySquare(keyword.toUpperCase().replace(/[^A-Z]/gi, "").replace("J", "I"));
-    var input = plaintext.toUpperCase().replace(/[^A-Z]/gi, "");
+    var input = plaintext.toUpperCase().replace(/[^A-Z]/gi, "").replace("J", "I");
     var chars = input.split("");
     var charsInts = [];
     var result = [];
@@ -98,8 +98,6 @@ function playfairEncipher(plaintext, keyword)
 
 // Deciphers the given text using the Playfair cipher.
 // I and J are interchangable, so any J's expected during deciphering will come out as an I.
-
-// TODO: Same row/column is not working currently.
 function playfairDecipher(ciphertext, keyword)
 {
     // Validate inputs.

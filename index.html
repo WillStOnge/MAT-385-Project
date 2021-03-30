@@ -36,9 +36,12 @@
       <div class="content-wrapper">
 
         <!-- Navbar start -->
-        <nav class="navbar">
+        <nav class="navbar justify-content-between align-middle">
           <div class="navbar-content">
-            <h3>MAT 385 Project</h3>
+            <h4 class="pl-5">MAT 385 Project</h4>
+          </div>
+          <div class="navbar-content">
+            <a href="https://github.com/WillStOnge/MAT-385-Project/"><img class="text-decoration-none" src="img/github.png" alt="GitHub Repo"></a>
           </div>
         </nav>
         <!-- Navbar end -->
@@ -72,10 +75,16 @@
                   <input type="text" placeholder="Keyword" class="form-control" id="keyword">
                 </div>
                 <div id="hillInput" style="visibility: hidden; height: 0">
-                  <input type="number" min="0" max="25" class="form-control" id="m1">
-                  <input type="number" min="0" max="25" class="form-control" id="m2">
-                  <input type="number" min="0" max="25" class="form-control" id="m3">
-                  <input type="number" min="0" max="25" class="form-control" id="m4">
+                  <div class="row">
+                    <div class="col-6">
+                      <input type="number" min="0" max="25" value="0" class="form-control" id="m1">
+                      <input type="number" min="0" max="25" value="0" class="form-control" id="m2">
+                    </div>
+                    <div class="col-6">
+                      <input type="number" min="0" max="25" value="0" class="form-control" id="m3">
+                      <input type="number" min="0" max="25" value="0" class="form-control" id="m4">
+                    </div>
+                  </div>
                 </div>
 
                 <hr>
