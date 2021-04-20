@@ -32,7 +32,7 @@ $('#encipher').click(function() {
                     timeShown: 3000
                 });
             }
-            output = hillDecipher(input, [[m1, m2], [m3, m4]]);
+            output = hillEncipher(input, [m1, m2, m3, m4]);
             break;
         default:
             halfmoon.initStickyAlert({
@@ -77,7 +77,7 @@ $('#decipher').click(function() {
             var m2 = Number($('#m2').val());
             var m3 = Number($('#m3').val());
             var m4 = Number($('#m4').val());
-            output = hillDecipher(input, [[m1, m2], [m3, m4]]);
+            output = hillDecipher(input, [m1, m2, m3, m4]);
             break;
         default:
             halfmoon.initStickyAlert({
