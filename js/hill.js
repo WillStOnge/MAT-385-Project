@@ -2,32 +2,16 @@
 //MAT 385
 //Hill Cipher - Encryption & Decryption
 //4/21/21
-const prompt = require('prompt-sync')();
-//Takes user input to determine what kind of encryption they would like to do. 
-var choice = prompt("Would you like to Encrypt (E), Decrypt (D), or Quit (Q): ").toLowerCase()
-if (choice == 'e') {
-    var plaintext = prompt("Enter the plaintext you would like to encrypt(must not be blank): ").toLowerCase();
-    var k = prompt("Enter the key you would like to use to encrypt your message(must be 4 numbers): ").toLowerCase();
-    var output = "";
-    var keys = k.split(" ");
-    //Runs the encryption function to get the encrypted text based on the user input. 
-    encryption(plaintext, keys);
-}
-
-if (choice == 'd'){
-    var ciphertext = prompt("Enter the ciphertext you would like to decrypt: ").toLowerCase();
-    var k = prompt("Enter the key you would like to use to decrypt your message: ").toLowerCase();
-    keys = k.split(" ");
-    //Runs the decryption function to get the decrypted text based on the user input. 
-    decryption(ciphertext, keys);
-}
-//quits the program if user input is q or Q
-if (choice == 'q'){
-    process.exit(0);
-}
+//const prompt = require('prompt-sync')();
+var plaintext = "";
+var ciphertext = "";
+var k = "";
 
 //This function encypts the message by multiplying the plaintext by the keys matrix and converting the number to their alphabetical value
-function encryption(plaintext, keys){
+function hillEncipher(plaintext, k){
+    var output = "";
+    var keys = k.split(" ");
+    
     errorChecking(plaintext, keys);
     keygeneration(keys);
 
@@ -39,7 +23,8 @@ function encryption(plaintext, keys){
 }
 
 //This function deciphers a text from the user by taking their input and the key and inverting in order to get the hidden message
-function decryption(ciphertext, keys){
+function hillDecipher(ciphertext, k){
+    keys = k.split(" ");
     errorChecking(ciphertext, keys);
     keygeneration(keys);
     var det = keys[0] * keys[3] - keys[1] * keys[2];
