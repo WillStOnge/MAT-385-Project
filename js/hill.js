@@ -1,30 +1,27 @@
-//Greyson Fangman
-//MAT 385
-//Hill Cipher - Encryption & Decryption
-//4/21/21
-//const prompt = require('prompt-sync')();
-var plaintext = "";
-var ciphertext = "";
-var k = "";
-
 //This function encypts the message by multiplying the plaintext by the keys matrix and converting the number to their alphabetical value
-function hillEncipher(plaintext, k){
+function hillEncipher(plaintext, keys)
+{
     var output = "";
-    var keys = k.split(" ");
-    
+
+    plaintext = plaintext.toUpperCase().replace(/[^A-Z]/gi, "");
+    if (plaintext.length % 2 == 1)
+        plaintext + 'X';
+
     errorChecking(plaintext, keys);
     keygeneration(keys);
 
     for (i = 0; i < plaintext.length; i += 2) {
-        output += String.fromCharCode((keys[0] * (plaintext.charCodeAt(i) - 97) + keys[1] * (plaintext.charCodeAt(i + 1) - 97)) % 26 + 97);
-        output += String.fromCharCode((keys[2] * (plaintext.charCodeAt(i) - 97) + keys[3] * (plaintext.charCodeAt(i + 1) - 97)) % 26 + 97);
+        output += String.fromCharCode((keys[0] * (plaintext.charCodeAt(i) - 64) + keys[1] * (plaintext.charCodeAt(i + 1) - 64)) % 26 + 64);
+        output += String.fromCharCode((keys[2] * (plaintext.charCodeAt(i) - 64) + keys[3] * (plaintext.charCodeAt(i + 1) - 64)) % 26 + 64);
     }
-    console.log(output);
+    return output;
 }
 
 //This function deciphers a text from the user by taking their input and the key and inverting in order to get the hidden message
-function hillDecipher(ciphertext, k){
-    keys = k.split(" ");
+function hillDecipher(ciphertext, keys)
+{
+    ciphertext = ciphertext.toUpperCase().replace(/[^A-Z]/gi, "");
+
     errorChecking(ciphertext, keys);
     keygeneration(keys);
     var det = keys[0] * keys[3] - keys[1] * keys[2];
@@ -44,10 +41,10 @@ function hillDecipher(ciphertext, k){
     }
     var plaintext = "";
     for (i = 0; i < ciphertext.length; i += 2) {
-        plaintext += String.fromCharCode((ikeys[0] * (ciphertext.charCodeAt(i) - 97) + ikeys[1] * (ciphertext.charCodeAt(i + 1) - 97)) % 26 + 97);
-        plaintext += String.fromCharCode((ikeys[2] * (ciphertext.charCodeAt(i) - 97) + ikeys[3] * (ciphertext.charCodeAt(i + 1) - 97)) % 26 + 97);
+        plaintext += String.fromCharCode((ikeys[0] * (ciphertext.charCodeAt(i) - 64) + ikeys[1] * (ciphertext.charCodeAt(i + 1) - 64)) % 26 + 64);
+        plaintext += String.fromCharCode((ikeys[2] * (ciphertext.charCodeAt(i) - 64) + ikeys[3] * (ciphertext.charCodeAt(i + 1) - 64)) % 26 + 64);
     }
-    console.log(plaintext);
+    return plaintext;
 }
 //Takes the user input for the key and puts it in an array called keys
 function keygeneration(keys){
